@@ -1,0 +1,93 @@
+/* Notion-like Dark Theme */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Arial, sans-serif;
+  background-color: #191919;
+  color: #d1d1d1;
+  height: 100vh;
+  width: 100vw;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+.app .navbar {
+  padding: 0.5rem 1rem;
+  background-color: #191919;
+  display: flex;
+  justify-content: space-between;
+}
+.app .navbar .search {
+  display: flex;
+  gap: 0.5rem;
+}
+.app .navbar .search input {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
+}
+.app .navbar .search button {
+  padding: 0.25rem 0.5rem;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
+  border: none;
+  border-radius: 4px;
+}
+.app .navbar .search button:hover {
+  background-color: #484848;
+}
+.app .navbar .theme button {
+  padding: 0.25rem 0.5rem;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
+  border: none;
+  border-radius: 4px;
+}
+.app .navbar .theme button:hover {
+  background-color: #484848;
+}
+.app .main-container {
+  display: flex;
+  height: calc(100vh - 40px);
+}
+.app .main-container .sidebar {
+  width: 250px;
+  background-color: #202020;
+  padding: 1rem;
+}
+.app .main-container .sidebar h3 {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #d1d1d1;
+  margin: 1rem 0;
+}
+.app .main-container .sidebar button {
+  display: block;
+  padding: 0.5rem;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  text-align: left;
+}
+.app .main-container .sidebar button:hover {
+  background-color: #484848;
+}
+.app .main-container .main-part {
+  flex: 1;
+  padding: 2rem;
+}
+.app .main-container .main-part .welcome h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}/*# sourceMappingURL=style.css.map */

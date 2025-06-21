@@ -1,0 +1,116 @@
+/* Notion-like Dark Theme */
+$bg-dark: #191919;
+$bg-sidebar: #202020;
+$text-color: #d1d1d1;
+$accent: #2e2e2e;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-dark;
+  color: $text-color;
+  height: 100vh;
+  width: 100vw;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+
+  .navbar {
+    padding: 0.5rem 1rem;
+    background-color: $bg-dark;
+    display: flex;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      gap: 0.5rem;
+
+      input {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        border: none;
+        background-color: $accent;
+        color: $text-color;
+      }
+
+      button {
+        padding: 0.25rem 0.5rem;
+        background-color: $accent;
+        color: $text-color;
+        border: none;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: lighten($accent, 10%);
+        }
+      }
+    }
+
+    .theme {
+      button {
+        padding: 0.25rem 0.5rem;
+        background-color: $accent;
+        color: $text-color;
+        border: none;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: lighten($accent, 10%);
+        }
+      }
+    }
+  }
+
+  .main-container {
+    display: flex;
+    height: calc(100vh - 40px);
+
+    .sidebar {
+      width: 250px;
+      background-color: $bg-sidebar;
+      padding: 1rem;
+
+      h3 {
+        font-size: 0.9rem;
+        font-weight: normal;
+        color: $text-color;
+        margin: 1rem 0;
+      }
+
+      button {
+        display: block;
+        padding: 0.5rem;
+        background-color: $accent;
+        color: $text-color;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        text-align: left;
+
+        &:hover {
+          background-color: lighten($accent, 10%);
+        }
+      }
+    }
+
+    .main-part {
+      flex: 1;
+      padding: 2rem;
+
+      .welcome {
+        h1 {
+          font-size: 3rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
