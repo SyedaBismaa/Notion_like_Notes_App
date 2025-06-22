@@ -17,19 +17,23 @@ body {
 .app {
   display: flex;
   flex-direction: column;
+  padding: 0.2rem;
+  height: 100%;
+  width: 100%;
 }
 .app .navbar {
   padding: 0.5rem 1rem;
   background-color: #191919;
   display: flex;
   justify-content: space-between;
+  margin-top: 1.2rem;
 }
 .app .navbar .search {
   display: flex;
   gap: 0.5rem;
 }
 .app .navbar .search input {
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 4px;
   border: none;
   background-color: #2e2e2e;
@@ -57,49 +61,111 @@ body {
 }
 .app .main-container {
   display: flex;
-  height: calc(100vh - 40px);
-}
-.app .main-container .sidebar {
-  width: 250px;
-  background-color: #202020;
-  padding: 1rem;
-}
-.app .main-container .sidebar .page-list {
-  margin-top: 0.3rem;
-}
-.app .main-container .sidebar h3 {
-  font-size: 0.9rem;
-  font-weight: normal;
-  color: #d1d1d1;
-  margin: 1rem 0;
-}
-.app .main-container .sidebar button {
-  display: block;
-  padding: 0.5rem;
-  background-color: #2e2e2e;
-  color: #d1d1d1;
-  border: none;
-  border-radius: 4px;
+  height: 98%;
   width: 100%;
-  text-align: left;
-}
-.app .main-container .sidebar button:hover {
-  background-color: #484848;
+  padding: 0.9rem;
 }
 .app .main-container .main-part {
   flex: 1;
   padding: 2rem;
 }
+.app .main-container .main-part .welcome {
+  height: 100%;
+}
 .app .main-container .main-part .welcome h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 .app .main-container .main-part .welcome #page-content {
   max-width: 100%;
+  height: 100%;
+  padding: 1rem;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 .app .main-container .main-part .welcome #page-content .content {
-  max-height: 500px;
+  height: 100%;
+  padding: 1.2rem;
   overflow-y: auto;
+  outline: none;
+  font-size: 1.2rem;
+}
+.app .main-container .sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #202020;
+  width: 20%;
+  overflow: hidden;
+}
+.app .main-container .sidebar .new-page-container {
+  margin-bottom: 1rem;
+}
+.app .main-container .sidebar .new-page-container button#Addpage {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  background-color: #2e2e2e;
+}
+.app .main-container .sidebar .new-page-container button#Addpage:hover {
+  background-color: #3a97fa;
+}
+.app .main-container .sidebar .page-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  height: 30%;
+  overflow-y: auto;
+}
+.app .main-container .sidebar .page-list .page-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app .main-container .sidebar .page-list .page-item .page-title {
+  cursor: pointer;
+}
+.app .main-container .sidebar .page-list .page-item .trash-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #ff4d4d;
+}
+.app .main-container .sidebar .page-list .page-item .trash-button:hover {
+  color: #ff0000;
+}
+.app .main-container .sidebar .font-settings,
+.app .main-container .sidebar .canvas,
+.app .main-container .sidebar .templates {
+  margin-top: 1.2rem;
+}
+.app .main-container .sidebar .font-settings h3,
+.app .main-container .sidebar .canvas h3,
+.app .main-container .sidebar .templates h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.app .drawing-area {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.app .drawing-area h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.app .drawing-area canvas {
+  flex: 1;
+  border: 1px solid #ccc;
+  cursor: crosshair;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #968686;
 }/*# sourceMappingURL=style.css.map */
