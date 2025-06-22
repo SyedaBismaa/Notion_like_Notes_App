@@ -1,53 +1,74 @@
-let pages = [
-    {  
-        'Title':"Untitled",
-        "Content":" Start writing",
-        "id": Date.now()
-    },
-      {  
-        'Title':"Untitled",
-        "Content":" Start writing",
-        "id": Date.now()
-    }
-    
-]
+ function addNewPage(){
+  let pages = JSON.parse(localStorage.getItem("pages")) || [];
+let currentPageId = null;
 
-console.log(pages);
+const addPageBtn = document.querySelector('#Addpage');
+const pageList = document.querySelector('.page-list');
+const pageContent = document.querySelector('#page-content');
 
-var addPage = document.querySelector('#Addpage');
 
-addPage.addEventListener('click',function(){
+addPageBtn.addEventListener('click', createPage);
 
-    function Createpage(){
-        
-         var newPageObject = {Title: "Untitled", Content: "Start writing", id: Date.now() };
 
-         pages.push(newPageObject);
-
-         localStorage.setItem("pages", JSON.stringify(pages))
-    }
-   
-    Createpage();
-  
-  function Render() {
-    var pageList = document.querySelector(".page-list");
-    pageList.innerHTML = ''; 
-    pages.forEach(page => {
-        var titleDiv = document.createElement("div");
-        titleDiv.textContent = page.Title;
-        titleDiv.addEventListener('click', () => {
-            currentPageId = page.id;
-            Render(); 
-        });
-        pageList.appendChild(titleDiv);
-    });
+function createPage() {
+  const newPageObject = {
+    "Title": "New page",
+    "Content": "Start writing",
+    "id": Date.now()
+  };
+  pages.push(newPageObject);
+  savePages();
+  render();
 }
 
-Render();
-});
+function render() {
+  pageList.innerHTML = "";
+  pages.forEach(page => {
+    const titleDiv = document.createElement("div");
+    titleDiv.textContent = page.Title;
+
+    titleDiv.addEventListener('click', () => {
+      currentPageId = page.id;
+      loadPage(page.id);
+    });
+
+    pageList.appendChild(titleDiv);
+  });
+}
+
+function loadPage(pageId) {
+  const page = pages.find(p => p.id === pageId);
+  if (!page) return;
+
+  pageContent.innerHTML = `
+    <h1 contenteditable="true" class="title">${page.Title}</h1>
+    <div contenteditable="true" class="content">${page.Content}</div>
+  `;
+
+  pageContent.querySelector('.title').addEventListener('input', e => {
+    page.Title = e.target.textContent;
+    savePages();
+    render();
+  });
+
+  pageContent.querySelector('.content').addEventListener('input', e => {
+    page.Content = e.target.innerHTML;
+    savePages();
+  });
+}
+
+function savePages() {
+  localStorage.setItem("pages", JSON.stringify(pages));
+}
+
+render();
 
 
+if (pages.length > 0) {
+  currentPageId = pages[0].id;
+  loadPage(currentPageId);
+}
 
+ }
 
-
-
+ addNewPage();

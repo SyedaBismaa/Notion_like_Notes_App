@@ -64,6 +64,9 @@ body {
   background-color: #202020;
   padding: 1rem;
 }
+.app .main-container .sidebar .page-list {
+  margin-top: 0.3rem;
+}
 .app .main-container .sidebar h3 {
   font-size: 0.9rem;
   font-weight: normal;
@@ -90,4 +93,13 @@ body {
 .app .main-container .main-part .welcome h1 {
   font-size: 3rem;
   font-weight: bold;
+}
+.app .main-container .main-part .welcome #page-content {
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+.app .main-container .main-part .welcome #page-content .content {
+  max-height: 500px;
+  overflow-y: auto;
 }/*# sourceMappingURL=style.css.map */

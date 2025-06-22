@@ -78,6 +78,10 @@ body {
       background-color: $bg-sidebar;
       padding: 1rem;
 
+      .page-list {
+        margin-top: 0.3rem;
+      }
+
       h3 {
         font-size: 0.9rem;
         font-weight: normal;
@@ -110,7 +114,19 @@ body {
           font-size: 3rem;
           font-weight: bold;
         }
+
+        #page-content {
+          max-width: 100%;
+          word-break: break-word;
+          overflow-wrap: break-word;
+
+          .content {
+            max-height: 500px;
+            overflow-y: auto;
+          }
+        }
       }
     }
+
   }
 }
