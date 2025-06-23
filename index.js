@@ -50,7 +50,6 @@ function addNewPage() {
   function deletePage(pageId) {
     pages = pages.filter(page => page.id !== pageId);
     savePages();
-
     if (currentPageId == pageId) {
       currentPageId = null;
       pageContent.innerHTML = "";
@@ -82,7 +81,7 @@ function addNewPage() {
     localStorage.setItem("pages", JSON.stringify(pages));
   }
 
-  // Initial Load
+
   render();
   if (pages.length > 0) {
     currentPageId = pages[0].id;
@@ -90,27 +89,38 @@ function addNewPage() {
   }
 }
 
-
 addNewPage();
 
 
-function canvasDisplay() {
-  var canvasbtn = document.querySelector('.canvas');
-  const mainPart = document.querySelector('.main-part');
+// CANVAS FUNCTION
+// =====================================================
 
-  canvasbtn.addEventListener('click', function() {
+function canvasDisplay() {
+  const canvasBtn = document.querySelector('.canvas');
+  const mainPart = document.querySelector('.main-part');
+  const originalContent = mainPart.innerHTML;
+
+  canvasBtn.addEventListener('click', function () {
     mainPart.innerHTML = `
       <div class="drawing-area">
         <h2>Draw Here</h2>
         <canvas id="drawing-canvas"></canvas>
+        <button class='backbtn'>Go Back</button>
       </div>
     `;
+
     const drawingCanvas = document.querySelector('#drawing-canvas');
     initializeCanvas(drawingCanvas);
-  });  
 
+    const backBtn = document.querySelector('.backbtn');
+    backBtn.addEventListener('click', function () {
+      mainPart.innerHTML = originalContent;
+      canvasDisplay();
+    });
+  });
+}
 
-  function initializeCanvas(drawingCanvas) {
+function initializeCanvas(drawingCanvas) {
   const ctx = drawingCanvas.getContext('2d');
 
   function resizeCanvas() {
@@ -129,6 +139,11 @@ function canvasDisplay() {
   });
   drawingCanvas.addEventListener('mousemove', e => {
     if (!isDrawing) return;
+
+
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = fontSize;
+
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
   });
@@ -140,6 +155,44 @@ function canvasDisplay() {
   });
 }
 
+canvasDisplay();
+
+//DRAWING TOOLS====================================================
+
+var toolbar = document.querySelector('.drawing-toolbar');
+const canvas = document.querySelector('.canvas');
+let strokeColor = '#000000';
+let fontSize = 12;
+function drawExample(ctx, text) {
+  ctx.strokeStyle = strokeColor;
+
+  ctx.strokeText(text, 80, 80);
+  ctx.globalAlpha = 1.0;
 }
 
-canvasDisplay();
+canvas.addEventListener('click', function () {
+  toolbar.style.display = 'flex';
+
+  const colors = document.querySelectorAll('.color');
+  const fontSizeInput = document.querySelector('#font-size');
+
+  colors.forEach(colorBtn => {
+    colorBtn.addEventListener('click', e => {
+      strokeColor = e.target.getAttribute('data-color');
+    });
+  });
+
+  fontSizeInput.addEventListener('change', e => {
+    fontSize = parseInt(e.target.value);
+  });
+
+  const drawingCanvas = document.querySelector('#drawing-canvas');
+  if (drawingCanvas) {
+    const ctx = drawingCanvas.getContext('2d');
+    drawExample(ctx, '');
+  }
+});
+
+// save ==========================================
+
+//reaming

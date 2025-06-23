@@ -148,6 +148,7 @@ body {
         overflow-y: auto;
 
 
+
         .page-item {
           display: flex;
           justify-content: space-between;
@@ -175,7 +176,7 @@ body {
 
       .font-settings,
       .canvas,
-      .templates {
+      .Calender {
         margin-top: 1.2rem;
 
         h3 {
@@ -193,6 +194,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
 
     h2 {
       margin-bottom: 1rem;
@@ -206,9 +208,80 @@ body {
       display: block;
       width: 100%;
       height: 100%;
+      // background-color: #968686;
+    }
+
+    .backbtn {
+      position: absolute;
+      bottom: 1.2%;
+      right: 5%;
+      border-radius: 1px;
+      border: none;
+      outline: none;
+      padding: 0.3rem 1.7rem;
+      font-size: 1.2rem;
+    }
+
+    .backbtn:active {
+      transform: scale(0.95);
       background-color: #968686;
     }
   }
+
+
+  .drawing-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Put items side-by-side from left */
+    gap: 1rem;
+    /* Space between stroke-colors and select */
+    padding: 0.5rem 2rem;
+
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #222;
+    border-bottom: 1px solid #555;
+
+    /* Default hidden state */
+    display: none;
+  }
+
+  .drawing-toolbar .stroke-colors {
+    display: flex;
+    align-items: center;
+  }
+
+  .drawing-toolbar .stroke-colors .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .drawing-toolbar .stroke-colors .color:hover {
+    transform: scale(1.1);
+  }
+
+  .drawing-toolbar select {
+    padding: 0.25rem 0.5rem;
+    font-size: 14px;
+
+    background-color: #333;
+    color: #fff;
+
+    border: 1px solid #555;
+    border-radius: 4px;
+
+    /* Make sure it's aligned properly */
+    display: inline-block;
+  }
+
 
 
 
