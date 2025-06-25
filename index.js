@@ -1,18 +1,47 @@
-// ======================= PAGE MANAGEMENT ==========================
+//Home ======================
+
+
+var home = document.querySelector('.home');
+home.addEventListener('click', () => {
+  var mainPart = document.querySelector('.main-part');
+  mainPart.innerHTML = `
+    <div class="home-view">
+      <h1>Welcome to Your Workspace</h1>
+      <p>“Here you can create pages, draw ideas, and manage your thoughts — all in one place.”</p>
+      <div class="quick-buttons">
+        <button id="addPageHome">Add New Page</button>
+        <button id="openCanvasHome">Open Canvas</button>
+        <button id="viewCalendarHome">View Calendar</button>
+      </div>
+    </div>
+  `;
+
+  document.querySelector('#addPageHome')?.addEventListener('click', () => {
+    document.querySelector('#Addpage')?.click();
+  });
+  document.querySelector('#openCanvasHome')?.addEventListener('click', () => {
+    document.querySelector('.canvas')?.click();
+  });
+
+  document.querySelector('#viewCalendarHome')?.addEventListener('click', () => {
+    document.querySelector('.Calender')?.click();
+  });
+});
+
+
+
+
 function addNewPage() {
   let pages = JSON.parse(localStorage.getItem("pages")) || [];
   let currentPageId = null;
-
   const addPageBtn = document.querySelector('#Addpage');
   const pageList = document.querySelector('.page-list');
   const pageContent = document.querySelector('#page-content');
-
   addPageBtn.addEventListener('click', createPage);
-
   function createPage() {
     const newPageObject = {
       "Title": "New page",
-      "Content": "Start writing",
+      "Content": "Start writing....",
       "id": Date.now()
     };
     pages.push(newPageObject);
@@ -21,7 +50,7 @@ function addNewPage() {
   }
 
   function render() {
-    pageList.innerHTML = ""; 
+    pageList.innerHTML = "";
     pages.forEach(page => {
       const pageItem = document.createElement("div");
       pageItem.classList.add("page-item");
@@ -35,7 +64,7 @@ function addNewPage() {
       });
 
       const trashBtn = document.createElement('button');
-      trashBtn.innerHTML = '🗑️';
+      trashBtn.innerHTML = '<i class="ri-delete-bin-6-line"></i>';
       trashBtn.classList.add("trash-button");
       trashBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -52,7 +81,7 @@ function addNewPage() {
     savePages();
     if (currentPageId == pageId) {
       currentPageId = null;
-      pageContent.innerHTML = ""; 
+      pageContent.innerHTML = "";
     }
     render();
   }
@@ -91,12 +120,12 @@ function addNewPage() {
 }
 addNewPage();
 
-// ======================= CANVAS FUNCTION ==========================
+//Drawing canvas============================================ 
+
 function canvasDisplay() {
   const canvasBtn = document.querySelector('.canvas');
   const mainPart = document.querySelector('.main-part');
   const originalContent = mainPart.innerHTML;
-
   canvasBtn.addEventListener('click', function () {
     mainPart.innerHTML = `
       <div class="drawing-area">
@@ -112,12 +141,9 @@ function canvasDisplay() {
     const backBtn = document.querySelector('.backbtn');
     backBtn.addEventListener('click', function () {
       mainPart.innerHTML = originalContent;
-
-      // ✅ Hide toolbar
       if (toolbar) {
         toolbar.style.display = 'none';
       }
-
       canvasDisplay();
     });
   });
@@ -157,11 +183,11 @@ function initializeCanvas(drawingCanvas) {
 }
 canvasDisplay();
 
-// ======================= DRAWING TOOLS ==========================
+//  DRAWING TOOLS ==========================
+
 var toolbar = document.querySelector('.drawing-toolbar');
 const canvas = document.querySelector('.canvas');
 var clearbtn = document.querySelector('#clearbtn');
-
 let strokeColor = '#000000';
 let fontSize = 12;
 
@@ -281,19 +307,19 @@ function Search() {
       if (loadPageFunction) {
         loadPageFunction(matchingPage.id);
       }
-      searchInput.value = ""; 
+      searchInput.value = "";
       return;
 
     } else if (query === 'calendar' || query === 'calender') {
       const calenderBtn = document.querySelector('.Calender');
       calenderBtn.click();
-      searchInput.value = ""; 
+      searchInput.value = "";
       return;
 
     } else if (query === 'canvas') {
       const canvasBtn = document.querySelector('.canvas');
       canvasBtn.click();
-      searchInput.value = ""; 
+      searchInput.value = "";
       return;
 
     } else {
@@ -314,22 +340,21 @@ Search();
 function theme() {
   const themeBtn = document.querySelector('.theme button');
 
- themeBtn.addEventListener('click', () => {
-  if (document.body.classList.contains('light-theme')) {
-    // Switch to Dark Theme
-    document.body.classList.remove('light-theme');
-    document.body.style.backgroundColor = '#2f3437';
-    document.body.style.color = '#d1d5db';
-    document.querySelector('.navbar').style.backgroundColor = '#2f3437';
-    document.querySelector('.sidebar').style.backgroundColor = '#373c3f';
-  } else {
-    document.body.classList.add('light-theme');
-    document.body.style.backgroundColor = '#FAFAFA';
-    document.body.style.color = '#333333';
-    document.querySelector('.navbar').style.backgroundColor = '#FFFFFF';
-    document.querySelector('.sidebar').style.backgroundColor = '#F3F3F3';
-  }
-});
+  themeBtn.addEventListener('click', () => {
+    if (document.body.classList.contains('light-theme')) {
+      document.body.classList.remove('light-theme');
+      document.body.style.backgroundColor = '#2f3437';
+      document.body.style.color = '#d1d5db';
+      document.querySelector('.navbar').style.backgroundColor = '#2f3437';
+      document.querySelector('.sidebar').style.backgroundColor = '#373c3f';
+    } else {
+      document.body.classList.add('light-theme');
+      document.body.style.backgroundColor = '#FAFAFA';
+      document.body.style.color = '#333333';
+      document.querySelector('.navbar').style.backgroundColor = '#FFFFFF';
+      document.querySelector('.sidebar').style.backgroundColor = '#F3F3F3';
+    }
+  });
 }
 theme();
 

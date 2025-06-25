@@ -4,15 +4,13 @@
 <head>
   <title>Notion-like App</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="
-https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js
-"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
 </head>
 
 <body>
   <div class="app">
 
-    <!-- Navbar -->
     <div class="navbar">
       <div class="search">
         <input id="searchinput" type="text" placeholder="Search" />
@@ -23,29 +21,33 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js
       </div>
     </div>
     <div class="main-container">
-      <!-- Sidebar -->
+
       <div class="sidebar">
+        <div class="home"> <i class="ri-home-smile-line"></i> Home</div>
         <div class="new-page-container">
-          <button id="Addpage">+ New Page</button>
+          <div id="Addpage"><i class="ri-file-add-line"></i>New Page</div>
         </div>
         <div class="page-list">
           <!-- Pages added by JS will be rendered here -->
         </div>
 
         <div class="canvas">
-          <h3>Canvas</h3>
+          <h3><i class="ri-brush-ai-line"></i> Canvas</h3>
           <div class="drawing-canvas"></div>
         </div>
 
         <div class="Calender">
-          <h3>Calender</h3>
+          <h3> <i class="ri-calendar-line"></i> Calendar</h3>
           <div id="calender"></div>
+        </div>
+
+
+        <div class="footer">
+          <p>Built with <i class="ri-heart-fill"></i> By Syeda Bisma</p>
+
         </div>
       </div>
 
-
-
-      <!-- Main Canvas -->
       <div class="main-part">
         <div class="welcome">
           <h1></h1>
@@ -54,7 +56,6 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js
       </div>
 
     </div>
-
 
     <div class="drawing-toolbar">
       <!-- strok==== -->
@@ -77,9 +78,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js
       <button id="clearbtn">Clear</button>
 
     </div>
-
   </div>
-
   <script src="index.js"></script>
 </body>
 

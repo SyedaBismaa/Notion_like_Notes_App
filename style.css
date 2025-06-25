@@ -59,6 +59,10 @@ body {
 .app .navbar .theme button:hover {
   background-color: #484848;
 }
+.app i {
+  font-size: 1.2rem;
+  padding-right: 0.5rem;
+}
 .app .main-container {
   display: flex;
   height: 98%;
@@ -101,17 +105,17 @@ body {
 .app .main-container .sidebar .new-page-container {
   margin-bottom: 1rem;
 }
-.app .main-container .sidebar .new-page-container button#Addpage {
-  padding: 0.5rem 1rem;
+.app .main-container .sidebar .new-page-container #Addpage {
+  padding: 0.1rem 0.1rem;
+  margin-top: 1rem;
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-style: bold;
   cursor: pointer;
   border: none;
-  color: #fff;
-  background-color: #2e2e2e;
 }
-.app .main-container .sidebar .new-page-container button#Addpage:hover {
-  background-color: #3a97fa;
+.app .main-container .sidebar .new-page-container #Addpage i {
+  padding-right: 0.3rem;
 }
 .app .main-container .sidebar .page-list {
   display: flex;
@@ -119,7 +123,7 @@ body {
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
-  height: 30%;
+  max-height: 30%;
   overflow-y: auto;
 }
 .app .main-container .sidebar .page-list .page-item {
@@ -129,27 +133,66 @@ body {
 }
 .app .main-container .sidebar .page-list .page-item .page-title {
   cursor: pointer;
+  padding: 0.2rem;
 }
 .app .main-container .sidebar .page-list .page-item .trash-button {
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: #ff4d4d;
 }
-.app .main-container .sidebar .page-list .page-item .trash-button:hover {
-  color: #ff0000;
+.app .main-container .sidebar .canvas {
+  position: absolute;
+  bottom: 42%;
+  cursor: pointer;
 }
-.app .main-container .sidebar .font-settings,
-.app .main-container .sidebar .canvas,
 .app .main-container .sidebar .Calender {
-  margin-top: 1.8rem;
+  position: absolute;
+  bottom: 35%;
 }
-.app .main-container .sidebar .font-settings h3,
-.app .main-container .sidebar .canvas h3,
 .app .main-container .sidebar .Calender h3 {
   font-size: 1.2rem;
   font-weight: bold;
+}
+.app .main-container .footer {
+  position: absolute;
+  bottom: 5%;
+}
+.app .main-container .footer i {
+  color: red;
+}
+.app .main-container .home-view {
+  padding: 4rem;
+}
+.app .main-container .home-view h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.app .main-container .home-view p {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #d1d1d1;
+  margin-bottom: 2rem;
+}
+.app .main-container .home-view .quick-buttons {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.app .main-container .home-view .quick-buttons button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #373c3f;
+  color: #f1f1f1;
+  border-radius: 5px;
+}
+.app .main-container .home-view .quick-buttons button:hover {
+  background-color: #4c5357;
+}
+.app .main-container .home-view .quick-buttons button:active {
+  transform: scale(0.97);
 }
 .app .drawing-area {
   display: flex;
