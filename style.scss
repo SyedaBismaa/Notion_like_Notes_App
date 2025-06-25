@@ -189,7 +189,6 @@ body {
 
   }
 
-
   .drawing-area {
     display: flex;
     flex-direction: column;
@@ -208,7 +207,6 @@ body {
       display: block;
       width: 100%;
       height: 100%;
-      // background-color: #968686;
     }
 
     .backbtn {
@@ -233,57 +231,84 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* Put items side-by-side from left */
     gap: 1rem;
-    /* Space between stroke-colors and select */
     padding: 0.5rem 2rem;
-
     position: absolute;
     top: 2%;
     left: 50%;
     transform: translateX(-50%);
-
     background-color: #222;
     border-bottom: 1px solid #555;
-
-    /* Default hidden state */
     display: none;
+
+    .stroke-colors {
+      display: flex;
+      align-items: center;
+
+      .color {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+
+      .color:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    select {
+      padding: 0.25rem 0.5rem;
+      font-size: 14px;
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    #clearbtn {
+      padding: 0.3rem 1.3rem;
+      background-color: #333;
+      color: #ccc;
+      outline: none;
+      border: none;
+    }
+
+    #clearbtn:active {
+      transform: scale(0.97);
+    }
   }
 
-  .drawing-toolbar .stroke-colors {
-    display: flex;
-    align-items: center;
+
+//   #calendar {
+//   max-width: 900px;
+//   margin: 20px auto;
+// }
+
+.calendar-view{
+  padding: 0.2rem;
+  height: 2rem;
+
+  .backbtn{
+    padding: 0.3rem 1.5rem;
+    position: absolute;
+    right: 6%;
+    top: 16%;
+  outline: none;
+   border-radius: 1rem;
   }
 
-  .drawing-toolbar .stroke-colors .color {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
+  #calendar{
+    padding: 0.2rem;
+    position: absolute;
+    top: 25%;
+    left: 24%;
+    height: 70%;
+    width: 70%;
   }
-
-  .drawing-toolbar .stroke-colors .color:hover {
-    transform: scale(1.1);
-  }
-
-  .drawing-toolbar select {
-    padding: 0.25rem 0.5rem;
-    font-size: 14px;
-
-    background-color: #333;
-    color: #fff;
-
-    border: 1px solid #555;
-    border-radius: 4px;
-
-    /* Make sure it's aligned properly */
-    display: inline-block;
-  }
-
-
-
-
+}
 
 }

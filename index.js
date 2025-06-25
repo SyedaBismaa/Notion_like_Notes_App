@@ -103,7 +103,7 @@ function canvasDisplay() {
   canvasBtn.addEventListener('click', function () {
     mainPart.innerHTML = `
       <div class="drawing-area">
-        <h2>Draw Here</h2>
+        <h2>Draw here</h2>
         <canvas id="drawing-canvas"></canvas>
         <button class='backbtn'>Go Back</button>
       </div>
@@ -116,6 +116,7 @@ function canvasDisplay() {
     backBtn.addEventListener('click', function () {
       mainPart.innerHTML = originalContent;
       canvasDisplay();
+      toolbar.style.display = 'none'
     });
   });
 }
@@ -161,6 +162,8 @@ canvasDisplay();
 
 var toolbar = document.querySelector('.drawing-toolbar');
 const canvas = document.querySelector('.canvas');
+var clearbtn = document.querySelector('#clearbtn');
+
 let strokeColor = '#000000';
 let fontSize = 12;
 function drawExample(ctx, text) {
@@ -193,6 +196,84 @@ canvas.addEventListener('click', function () {
   }
 });
 
-// save ==========================================
+clearbtn.addEventListener('click', function () {
+  const drawingCanvas = document.querySelector('#drawing-canvas');
+  if (drawingCanvas) {
+    const ctx = drawingCanvas.getContext('2d');
+    ctx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+  }
+  canvasDisplay();
+});
 
-//reaming
+
+
+// Caleneder ============================================================
+
+
+function calender() {
+  const mainPart = document.querySelector('.main-part');
+  const originalContent = mainPart.innerHTML;
+
+  const calenderBtn = document.querySelector('.Calender');
+
+  calenderBtn.addEventListener('click', () => {
+    mainPart.innerHTML = `
+      <div class="calendar-view">
+        <h2>My Calendar</h2>
+       <button class="backbtn">Go Back</button>
+        <div id="calendar"></div>
+      </div>
+    `;
+
+    initializeCalendar();
+
+    const backBtn = document.querySelector('.backbtn');
+    backBtn.addEventListener('click', function () {
+      mainPart.innerHTML = originalContent;
+      calender();
+    });
+  });
+}
+
+function initializeCalendar() {
+  const savedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+  const calEl = document.getElementById('calendar');
+
+  const calendar = new FullCalendar.Calendar(calEl, {
+    initialView: 'dayGridMonth',
+    editable: true,
+    selectable: true,
+    events: savedEvents,
+    dateClick: function (info) {
+      const title = prompt('Enter Event Title:');
+      if (title) {
+        const newEvent = {
+          title: title,
+          start: info.dateStr,
+        };
+        calendar.addEvent(newEvent);
+        saveEvents(calendar);
+      }
+    },
+    eventChange: function () {
+      saveEvents(calendar);
+    }
+  });
+  calendar.render();
+}
+
+function saveEvents(calendar) {
+  const updatedEvents = calendar.getEvents().map(event => {
+    return {
+      title: event.title,
+      start: event.startStr,
+      end: event.endStr || null,
+    };
+  });
+  localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
+}
+
+calender();
+
+
+//Search=================================================================

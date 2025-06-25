@@ -4,6 +4,9 @@
 <head>
   <title>Notion-like App</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="
+https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js
+"></script>
 </head>
 
 <body>
@@ -36,6 +39,7 @@
 
         <div class="Calender">
           <h3>Calender</h3>
+          <div id="calender"></div>
         </div>
       </div>
 
@@ -69,7 +73,8 @@
         <option value="16">30</option>
         <option value="20">40</option>
       </select>
-
+      
+      <button id="clearbtn">Clear</button>
 
     </div>
 

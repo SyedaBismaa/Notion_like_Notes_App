@@ -186,8 +186,8 @@ body {
 .app .drawing-toolbar {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Put items side-by-side from left */
-  gap: 1rem; /* Space between stroke-colors and select */
+  justify-content: flex-start;
+  gap: 1rem;
   padding: 0.5rem 2rem;
   position: absolute;
   top: 2%;
@@ -195,7 +195,6 @@ body {
   transform: translateX(-50%);
   background-color: #222;
   border-bottom: 1px solid #555;
-  /* Default hidden state */
   display: none;
 }
 .app .drawing-toolbar .stroke-colors {
@@ -220,6 +219,35 @@ body {
   color: #fff;
   border: 1px solid #555;
   border-radius: 4px;
-  /* Make sure it's aligned properly */
   display: inline-block;
+}
+.app .drawing-toolbar #clearbtn {
+  padding: 0.3rem 1.3rem;
+  background-color: #333;
+  color: #ccc;
+  outline: none;
+  border: none;
+}
+.app .drawing-toolbar #clearbtn:active {
+  transform: scale(0.97);
+}
+.app .calendar-view {
+  padding: 0.2rem;
+  height: 2rem;
+}
+.app .calendar-view .backbtn {
+  padding: 0.3rem 1.5rem;
+  position: absolute;
+  right: 6%;
+  top: 16%;
+  outline: none;
+  border-radius: 1rem;
+}
+.app .calendar-view #calendar {
+  padding: 0.2rem;
+  position: absolute;
+  top: 25%;
+  left: 24%;
+  height: 70%;
+  width: 70%;
 }/*# sourceMappingURL=style.css.map */
