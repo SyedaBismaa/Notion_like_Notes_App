@@ -1,3 +1,4 @@
+// ======================= PAGE MANAGEMENT ==========================
 function addNewPage() {
   let pages = JSON.parse(localStorage.getItem("pages")) || [];
   let currentPageId = null;
@@ -20,7 +21,7 @@ function addNewPage() {
   }
 
   function render() {
-    pageList.innerHTML = "";
+    pageList.innerHTML = ""; 
     pages.forEach(page => {
       const pageItem = document.createElement("div");
       pageItem.classList.add("page-item");
@@ -40,7 +41,6 @@ function addNewPage() {
         e.stopPropagation();
         deletePage(page.id);
       });
-
       pageItem.appendChild(titleDiv);
       pageItem.appendChild(trashBtn);
       pageList.appendChild(pageItem);
@@ -52,7 +52,7 @@ function addNewPage() {
     savePages();
     if (currentPageId == pageId) {
       currentPageId = null;
-      pageContent.innerHTML = "";
+      pageContent.innerHTML = ""; 
     }
     render();
   }
@@ -77,10 +77,11 @@ function addNewPage() {
     });
   }
 
+  window.loadPage = loadPage;
+
   function savePages() {
     localStorage.setItem("pages", JSON.stringify(pages));
   }
-
 
   render();
   if (pages.length > 0) {
@@ -88,13 +89,9 @@ function addNewPage() {
     loadPage(currentPageId);
   }
 }
-
 addNewPage();
 
-
-// CANVAS FUNCTION
-// =====================================================
-
+// ======================= CANVAS FUNCTION ==========================
 function canvasDisplay() {
   const canvasBtn = document.querySelector('.canvas');
   const mainPart = document.querySelector('.main-part');
@@ -115,12 +112,16 @@ function canvasDisplay() {
     const backBtn = document.querySelector('.backbtn');
     backBtn.addEventListener('click', function () {
       mainPart.innerHTML = originalContent;
+
+      // ✅ Hide toolbar
+      if (toolbar) {
+        toolbar.style.display = 'none';
+      }
+
       canvasDisplay();
-      toolbar.style.display = 'none'
     });
   });
 }
-
 function initializeCanvas(drawingCanvas) {
   const ctx = drawingCanvas.getContext('2d');
 
@@ -141,7 +142,6 @@ function initializeCanvas(drawingCanvas) {
   drawingCanvas.addEventListener('mousemove', e => {
     if (!isDrawing) return;
 
-
     ctx.strokeStyle = strokeColor;
     ctx.lineWidth = fontSize;
 
@@ -155,20 +155,18 @@ function initializeCanvas(drawingCanvas) {
     isDrawing = false;
   });
 }
-
 canvasDisplay();
 
-//DRAWING TOOLS====================================================
-
+// ======================= DRAWING TOOLS ==========================
 var toolbar = document.querySelector('.drawing-toolbar');
 const canvas = document.querySelector('.canvas');
 var clearbtn = document.querySelector('#clearbtn');
 
 let strokeColor = '#000000';
 let fontSize = 12;
+
 function drawExample(ctx, text) {
   ctx.strokeStyle = strokeColor;
-
   ctx.strokeText(text, 80, 80);
   ctx.globalAlpha = 1.0;
 }
@@ -205,11 +203,7 @@ clearbtn.addEventListener('click', function () {
   canvasDisplay();
 });
 
-
-
-// Caleneder ============================================================
-
-
+// CALENDAR FUNCTION ==========================
 function calender() {
   const mainPart = document.querySelector('.main-part');
   const originalContent = mainPart.innerHTML;
@@ -234,7 +228,6 @@ function calender() {
     });
   });
 }
-
 function initializeCalendar() {
   const savedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
   const calEl = document.getElementById('calendar');
@@ -261,7 +254,6 @@ function initializeCalendar() {
   });
   calendar.render();
 }
-
 function saveEvents(calendar) {
   const updatedEvents = calendar.getEvents().map(event => {
     return {
@@ -272,8 +264,74 @@ function saveEvents(calendar) {
   });
   localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
 }
-
 calender();
 
+// SEARCH FUNCTION ==========================
+function Search() {
+  const searchInput = document.querySelector('#searchinput');
+  const searchButton = document.querySelector('#Searchbtn');
 
-//Search=================================================================
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    const pages = JSON.parse(localStorage.getItem('pages')) || [];
+    const matchingPage = pages.find(page => page.Title.toLowerCase() === query);
+
+    if (matchingPage) {
+      const loadPageFunction = window.loadPage || null;
+      if (loadPageFunction) {
+        loadPageFunction(matchingPage.id);
+      }
+      searchInput.value = ""; 
+      return;
+
+    } else if (query === 'calendar' || query === 'calender') {
+      const calenderBtn = document.querySelector('.Calender');
+      calenderBtn.click();
+      searchInput.value = ""; 
+      return;
+
+    } else if (query === 'canvas') {
+      const canvasBtn = document.querySelector('.canvas');
+      canvasBtn.click();
+      searchInput.value = ""; 
+      return;
+
+    } else {
+      alert("No matching page found");
+    }
+  }
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  });
+  searchButton.addEventListener('click', handleSearch);
+}
+Search();
+
+//  THEME TOGGLE ==========================
+function theme() {
+  const themeBtn = document.querySelector('.theme button');
+
+ themeBtn.addEventListener('click', () => {
+  if (document.body.classList.contains('light-theme')) {
+    // Switch to Dark Theme
+    document.body.classList.remove('light-theme');
+    document.body.style.backgroundColor = '#2f3437';
+    document.body.style.color = '#d1d5db';
+    document.querySelector('.navbar').style.backgroundColor = '#2f3437';
+    document.querySelector('.sidebar').style.backgroundColor = '#373c3f';
+  } else {
+    document.body.classList.add('light-theme');
+    document.body.style.backgroundColor = '#FAFAFA';
+    document.body.style.color = '#333333';
+    document.querySelector('.navbar').style.backgroundColor = '#FFFFFF';
+    document.querySelector('.sidebar').style.backgroundColor = '#F3F3F3';
+  }
+});
+}
+theme();
+
+
+

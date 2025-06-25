@@ -177,7 +177,7 @@ body {
       .font-settings,
       .canvas,
       .Calender {
-        margin-top: 1.2rem;
+        margin-top: 1.8rem;
 
         h3 {
           font-size: 1.2rem;
@@ -218,6 +218,8 @@ body {
       outline: none;
       padding: 0.3rem 1.7rem;
       font-size: 1.2rem;
+      background-color: $accent;
+      color: $text-color;
     }
 
     .backbtn:active {
@@ -227,81 +229,87 @@ body {
   }
 
 
-  .drawing-toolbar {
+ .drawing-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $bg-sidebar;
+  border-bottom: 1px solid lighten($bg-sidebar, 20%);
+  display: none;
+
+  .stroke-colors {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding: 0.5rem 2rem;
-    position: absolute;
-    top: 2%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #222;
-    border-bottom: 1px solid #555;
-    display: none;
 
-    .stroke-colors {
-      display: flex;
-      align-items: center;
+    .color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
 
-      .color {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        margin-right: 5px;
-      }
-
-      .color:hover {
+      &:hover {
         transform: scale(1.1);
       }
     }
+  }
 
-    select {
-      padding: 0.25rem 0.5rem;
-      font-size: 14px;
-      background-color: #333;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 4px;
-      display: inline-block;
-    }
+  select {
+    padding: 0.25rem 0.5rem;
+    font-size: 14px;
+    background-color: $accent;
+    color: $text-color;
+    border: 1px solid lighten($bg-sidebar, 25%);
+    border-radius: 4px;
+    display: inline-block;
 
-    #clearbtn {
-      padding: 0.3rem 1.3rem;
-      background-color: #333;
-      color: #ccc;
-      outline: none;
-      border: none;
-    }
-
-    #clearbtn:active {
-      transform: scale(0.97);
+    option {
+      background-color: $bg-dark;
+      color: $text-color;
     }
   }
 
+  #clearbtn {
+    padding: 0.3rem 1.3rem;
+    background-color: $accent;
+    color: $text-color;
+    outline: none;
+    border: none;
 
-//   #calendar {
-//   max-width: 900px;
-//   margin: 20px auto;
-// }
+    &:active {
+      transform: scale(0.97);
+      background-color: lighten($accent, 10%);
+    }
+  }
+}
 
-.calendar-view{
+.calendar-view {
   padding: 0.2rem;
-  height: 2rem;
 
-  .backbtn{
+  .backbtn {
     padding: 0.3rem 1.5rem;
     position: absolute;
     right: 6%;
     top: 16%;
-  outline: none;
-   border-radius: 1rem;
+    outline: none;
+    border-radius: 1rem;
+    background-color: $accent;
+    color: $text-color;
+
+    &:active {
+      transform: scale(0.95);
+      background-color: lighten($accent, 10%);
+    }
   }
 
-  #calendar{
+  #calendar {
     padding: 0.2rem;
     position: absolute;
     top: 25%;
@@ -310,5 +318,6 @@ body {
     width: 70%;
   }
 }
+
 
 }

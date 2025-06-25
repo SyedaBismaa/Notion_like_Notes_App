@@ -143,7 +143,7 @@ body {
 .app .main-container .sidebar .font-settings,
 .app .main-container .sidebar .canvas,
 .app .main-container .sidebar .Calender {
-  margin-top: 1.2rem;
+  margin-top: 1.8rem;
 }
 .app .main-container .sidebar .font-settings h3,
 .app .main-container .sidebar .canvas h3,
@@ -178,6 +178,8 @@ body {
   outline: none;
   padding: 0.3rem 1.7rem;
   font-size: 1.2rem;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
 }
 .app .drawing-area .backbtn:active {
   transform: scale(0.95);
@@ -193,8 +195,8 @@ body {
   top: 2%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #222;
-  border-bottom: 1px solid #555;
+  background-color: #202020;
+  border-bottom: 1px solid #535353;
   display: none;
 }
 .app .drawing-toolbar .stroke-colors {
@@ -215,25 +217,29 @@ body {
 .app .drawing-toolbar select {
   padding: 0.25rem 0.5rem;
   font-size: 14px;
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
+  border: 1px solid #606060;
   border-radius: 4px;
   display: inline-block;
 }
+.app .drawing-toolbar select option {
+  background-color: #191919;
+  color: #d1d1d1;
+}
 .app .drawing-toolbar #clearbtn {
   padding: 0.3rem 1.3rem;
-  background-color: #333;
-  color: #ccc;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
   outline: none;
   border: none;
 }
 .app .drawing-toolbar #clearbtn:active {
   transform: scale(0.97);
+  background-color: #484848;
 }
 .app .calendar-view {
   padding: 0.2rem;
-  height: 2rem;
 }
 .app .calendar-view .backbtn {
   padding: 0.3rem 1.5rem;
@@ -242,6 +248,12 @@ body {
   top: 16%;
   outline: none;
   border-radius: 1rem;
+  background-color: #2e2e2e;
+  color: #d1d1d1;
+}
+.app .calendar-view .backbtn:active {
+  transform: scale(0.95);
+  background-color: #484848;
 }
 .app .calendar-view #calendar {
   padding: 0.2rem;
