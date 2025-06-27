@@ -1,6 +1,25 @@
+function theme() {
+  const themeBtn = document.querySelector('.theme button');
+
+  themeBtn.addEventListener('click', () => {
+    if (document.body.classList.contains('light-theme')) {
+      document.body.classList.remove('light-theme');
+      document.body.style.backgroundColor = '#2f3437';
+      document.body.style.color = '#d1d5db';
+      document.querySelector('.navbar').style.backgroundColor = '#2f3437';
+      document.querySelector('.sidebar').style.backgroundColor = '#373c3f';
+    } else {
+      document.body.classList.add('light-theme');
+      document.body.style.backgroundColor = '#FAFAFA';
+      document.body.style.color = '#333333';
+      document.querySelector('.navbar').style.backgroundColor = '#FFFFFF';
+      document.querySelector('.sidebar').style.backgroundColor = '#F3F3F3';
+    }
+  });
+}
+theme();
+
 //Home ======================
-
-
 var home = document.querySelector('.home');
 home.addEventListener('click', () => {
   var mainPart = document.querySelector('.main-part');
@@ -9,27 +28,19 @@ home.addEventListener('click', () => {
       <h1>Welcome to Your Workspace</h1>
       <p>“Here you can create pages, draw ideas, and manage your thoughts — all in one place.”</p>
       <div class="quick-buttons">
-        <button id="addPageHome">Add New Page</button>
         <button id="openCanvasHome">Open Canvas</button>
         <button id="viewCalendarHome">View Calendar</button>
       </div>
     </div>
   `;
 
-  document.querySelector('#addPageHome')?.addEventListener('click', () => {
-    document.querySelector('#Addpage')?.click();
-  });
   document.querySelector('#openCanvasHome')?.addEventListener('click', () => {
     document.querySelector('.canvas')?.click();
   });
-
   document.querySelector('#viewCalendarHome')?.addEventListener('click', () => {
     document.querySelector('.Calender')?.click();
   });
 });
-
-
-
 
 function addNewPage() {
   let pages = JSON.parse(localStorage.getItem("pages")) || [];
@@ -37,7 +48,9 @@ function addNewPage() {
   const addPageBtn = document.querySelector('#Addpage');
   const pageList = document.querySelector('.page-list');
   const pageContent = document.querySelector('#page-content');
+
   addPageBtn.addEventListener('click', createPage);
+
   function createPage() {
     const newPageObject = {
       "Title": "New page",
@@ -47,6 +60,8 @@ function addNewPage() {
     pages.push(newPageObject);
     savePages();
     render();
+    currentPageId = newPageObject.id; // Set the current page ID
+    loadPage(newPageObject.id); // Load the new page immediately
   }
 
   function render() {
@@ -178,6 +193,28 @@ function initializeCanvas(drawingCanvas) {
     isDrawing = false;
   });
   drawingCanvas.addEventListener('mouseleave', e => {
+    isDrawing = false;
+  });
+
+  drawingCanvas.addEventListener('touchstart', e => {
+    e.preventDefault();
+    isDrawing = true;
+    const touch = e.touches[0];
+    ctx.beginPath();
+    ctx.moveTo(touch.clientX - drawingCanvas.offsetLeft, touch.clientY - drawingCanvas.offsetTop);
+  });
+  drawingCanvas.addEventListener('touchmove', e => {
+    if (!isDrawing) return;
+    e.preventDefault();
+
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = fontSize;
+    const touch = e.touches[0];
+    ctx.lineTo(touch.clientX - drawingCanvas.offsetLeft, touch.clientY - drawingCanvas.offsetTop);
+    ctx.stroke();
+
+  });
+  drawingCanvas.addEventListener('touchend', () => {
     isDrawing = false;
   });
 }
@@ -337,26 +374,7 @@ function Search() {
 Search();
 
 //  THEME TOGGLE ==========================
-function theme() {
-  const themeBtn = document.querySelector('.theme button');
 
-  themeBtn.addEventListener('click', () => {
-    if (document.body.classList.contains('light-theme')) {
-      document.body.classList.remove('light-theme');
-      document.body.style.backgroundColor = '#2f3437';
-      document.body.style.color = '#d1d5db';
-      document.querySelector('.navbar').style.backgroundColor = '#2f3437';
-      document.querySelector('.sidebar').style.backgroundColor = '#373c3f';
-    } else {
-      document.body.classList.add('light-theme');
-      document.body.style.backgroundColor = '#FAFAFA';
-      document.body.style.color = '#333333';
-      document.querySelector('.navbar').style.backgroundColor = '#FFFFFF';
-      document.querySelector('.sidebar').style.backgroundColor = '#F3F3F3';
-    }
-  });
-}
-theme();
 
 
 
