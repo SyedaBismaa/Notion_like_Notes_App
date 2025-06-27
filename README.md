@@ -41,6 +41,6 @@ A minimal yet powerful note-taking web app built using **HTML, CSS, and JavaScri
 
 🙋‍♀️ Built By Syeda Bisma - 
 Learning in public & building things one project at a time 💻
-[LinkedIn](https://www.linkedin.com/in/your-profile) 
+[LinkedIn](https://www.linkedin.com/in/syeda-bisma-29202428a/) 
 
 
